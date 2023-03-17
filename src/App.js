@@ -1,11 +1,11 @@
 
 import React, {useState, useRef, useEffect} from "react";
-import { setCookie, getCookie } from "./Cookies";
+import { initCookie,parseCookie, addVideosToCurrentCookie  } from "./Cookies";
 import VideosList from "./VideosList";
 
 
-const USER_INFO = 'videosApp.userInfo'
-
+export const USER_INFO = 'videosApp.userInfo'
+export const UUID = 'UUID'
 
 
 
@@ -13,31 +13,24 @@ function App() {
 
   const [videos, setVideos] = useState ([]);
   const videoFef = useRef()
-  let userStorage = {UUID : '', VIDEOS_IDS : [] }
+
+
 
   useEffect(() => {
-    if(getCookie(USER_INFO) === '') {
-      userStorage.UUID = crypto.randomUUID();
-      userStorage.VIDEOS_IDS = [];
-      setCookie(USER_INFO,JSON.stringify(userStorage), 365 )
+    initCookie()
+    const cookieOfUserInfoParsed = parseCookie()
+    if (cookieOfUserInfoParsed !== undefined && cookieOfUserInfoParsed.VIDEOS_IDS.length) {
+      console.log("cookies user info is "+ cookieOfUserInfoParsed.UUID)
+      setVideos(cookieOfUserInfoParsed.VIDEOS_IDS)
     }
-
-    
-    let cookieOfUserInfo = getCookie(USER_INFO);
-    const cookieOfUserInfoParsed = JSON.parse(cookieOfUserInfo)
-    if (cookieOfUserInfoParsed !== undefined) console.log("cookies user info is "+ cookieOfUserInfoParsed.UUID)
-    if(cookieOfUserInfoParsed.VIDEOS_IDS.length) setVideos(cookieOfUserInfoParsed.VIDEOS_IDS)
   },[])
-
-  
 
   function handleAddVideo(e) {
     const name = videoFef.current.value
     if (name === '') return 
     
     setVideos(prevVideo => {
-      userStorage.VIDEOS_IDS = [...prevVideo, name];
-      setCookie(USER_INFO,JSON.stringify(userStorage), 365 )
+      addVideosToCurrentCookie(prevVideo, name)
       return [...prevVideo, name];
     })
     videoFef.current.value = null
