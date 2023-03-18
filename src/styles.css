@@ -37,3 +37,26 @@ z-index: 100;
     text-align: center;
     flex-shrink: 2;
   }
+
+
+  .input-box {
+    border: 2px solid #0066CC;
+    border-radius: 3px;
+  }
+  
+  .add-button {
+    color: #0066CC;
+    background: white;
+    border: 2px solid #0066CC;
+    border-radius: 3px;
+    margin-left: 10px;
+  }
+  
+  .delete-button {
+    color: white;
+    background: #0066CC;
+    border: 2px solid #0066CC;
+    border-radius: 3px;
+    margin-left: 10px;
+  }
+  

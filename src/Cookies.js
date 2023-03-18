@@ -50,3 +50,8 @@ export function setCookie(cname, cvalue, exdays) {
     userStorage.VIDEOS_IDS = [...prevVideos, newVideo];
     setCookie(USER_INFO,JSON.stringify(userStorage), 365 )
   }
+
+  export function deleteCookie(name) {
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  }
+  

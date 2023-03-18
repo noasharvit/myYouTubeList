@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Title from "./Title";
-import { initCookie, parseCookie, addVideosToCurrentCookie } from "./Cookies";
+import { initCookie, parseCookie, addVideosToCurrentCookie, deleteCookie } from "./Cookies";
 import VideosCarousel from "./VideosCarousel";
 import { youtube_parser } from "./youTube";
 import "./styles.css";
@@ -43,6 +43,11 @@ function App() {
       return [...prevVideo, videoId];
     });
   }
+  
+  function handleDeleteCookie() {
+    deleteCookie(USER_INFO);
+    setVideos([]);
+  }
 
   return (
     <div style={{ padding: "10px" }}>
@@ -51,21 +56,19 @@ function App() {
         <input
           ref={videoRef}
           type="text"
-          style={{
-            border: "2px solid #0066CC",
-            borderRadius: "3px",
-          }}
+          className="input-box"
         />
         <button
           onClick={handleAddVideo}
-          style={{
-            color: "#0066CC",
-            background: "white",
-            border: "2px solid #0066CC",
-            borderRadius: "3px",
-          }}
+          className="add-button"
         >
           Add a video to the list
+        </button>
+        <button
+          onClick={handleDeleteCookie}
+          className="delete-button"
+        >
+          Delete Playlist for good!
         </button>
       </div>
       <section className="video-list" style={{ padding: "10px" }}>
