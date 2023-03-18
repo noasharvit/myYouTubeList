@@ -52,16 +52,16 @@ function App() {
           ref={videoRef}
           type="text"
           style={{
-            border: "2px solid palevioletred",
+            border: "2px solid #0066CC",
             borderRadius: "3px",
           }}
         />
         <button
           onClick={handleAddVideo}
           style={{
-            color: "palevioletred",
+            color: "#0066CC",
             background: "white",
-            border: "2px solid palevioletred",
+            border: "2px solid #0066CC",
             borderRadius: "3px",
           }}
         >
