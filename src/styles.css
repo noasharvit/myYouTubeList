@@ -1,5 +1,8 @@
+.MuiPaper-root.MuiCarouselItem-root {
+    height: calc(100vh - 200px);
+  }
 
-
+  
 .YouTube {
     width: 80;
     height: 45
