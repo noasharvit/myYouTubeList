@@ -4,7 +4,6 @@ import Title from "./Title";
 import { initCookie,parseCookie, addVideosToCurrentCookie  } from "./Cookies";
 import VideosList from "./VideosList";
 import { youtube_parser } from "./youTube";
-import youTubeIFrame from "./youTubeIFrame";
 import "./styles.css";
 
 export const USER_INFO = 'videosApp.userInfo'
@@ -48,7 +47,8 @@ function App() {
 
   
   return (
-    <>
+    <div style={{padding: '10px'}}>
+      <div>
     <Title content ={"My favorite youtube videos:"}></Title>
     <input ref ={videoFef} type="text" 
             style={{ border: '2px solid palevioletred', borderRadius: '3px'}} />
@@ -58,10 +58,12 @@ function App() {
             borderRadius: '3px'}}>
       Add a video to the list
     </button>
-
+    </div>
+    <div className = "VideoItem" style={{padding: '10px'}}>
     {videos.length === 0? <Title content ={"no videos in playlist yet"}></Title> : <VideosList videosId = {videos} />}
     
-    </>
+    </div>
+    </div>
     
   );
 }

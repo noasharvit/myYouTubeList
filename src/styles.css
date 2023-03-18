@@ -1,7 +1,9 @@
-.VideoItem {
-    text-align: center;
-  }
 
+
+.YouTube {
+    width: 80;
+    height: 45
+  }
 
 .whatsapp_float {
 position: fixed;
@@ -19,3 +21,16 @@ text-align: center;
 box-shadow: 2px 2px 3px #999;
 z-index: 100;
 }
+
+.fixedContainer {
+    position: fixed;
+}
+
+.flexShrink {
+    flex-shrink: 2;
+    /* Do not set top / left! */
+}
+.VideoItem {
+    text-align: center;
+    flex-shrink: 2;
+  }
