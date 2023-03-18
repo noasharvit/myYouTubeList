@@ -1,8 +1,11 @@
 
 import React, {useState, useRef, useEffect} from "react";
+import Title from "./Title";
 import { initCookie,parseCookie, addVideosToCurrentCookie  } from "./Cookies";
 import VideosList from "./VideosList";
-
+import { youtube_parser } from "./youTube";
+import youTubeIFrame from "./youTubeIFrame";
+import "./styles.css";
 
 export const USER_INFO = 'videosApp.userInfo'
 export const UUID = 'UUID'
@@ -28,24 +31,41 @@ function App() {
   function handleAddVideo(e) {
     const name = videoFef.current.value
     if (name === '') return 
+    const videoId = youtube_parser(name);
     
+    if(!videoId){
+      alert("invalid url");
+      videoFef.current.value = null
+      return
+    }
+
     setVideos(prevVideo => {
-      addVideosToCurrentCookie(prevVideo, name)
-      return [...prevVideo, name];
+      addVideosToCurrentCookie(prevVideo, videoId)
+      return [...prevVideo, videoId];
     })
     videoFef.current.value = null
   }
 
-
+  
   return (
     <>
-    <div>My favorite youtube videos:</div>
-    <input ref ={videoFef} type="text" />
-    <button onClick={handleAddVideo}>Add a video to the list</button>
-    <VideosList videos = {videos} />
+    <Title content ={"My favorite youtube videos:"}></Title>
+    <input ref ={videoFef} type="text" 
+            style={{ border: '2px solid palevioletred', borderRadius: '3px'}} />
+    <button onClick={handleAddVideo}
+            style={{ color: 'palevioletred', background: 'white' ,
+            border: '2px solid palevioletred',
+            borderRadius: '3px'}}>
+      Add a video to the list
+    </button>
+
+    {videos.length === 0? <Title content ={"no videos in playlist yet"}></Title> : <VideosList videosId = {videos} />}
+    
     </>
     
   );
 }
 
 export default App;
+
+//{youTubeIFrame('Xt7roadoup8')}
