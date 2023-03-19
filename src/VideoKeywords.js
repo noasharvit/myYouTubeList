@@ -20,7 +20,7 @@ export default function VideoKeywords({ videoId }) {
 
   return (
     <div>
-      {keywords && keywords.length > 0 && (
+      {keywords !== undefined  && keywords.length > 0 && (
         <div>
           <Title content={"Keywords:"}/>
           <ul>
