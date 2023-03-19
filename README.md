@@ -5,3 +5,6 @@ to do all the set ups:
 
 to start the web page ru at the terminal:
 ### npm start
+
+link to deployed web :
+https://my-you-tube-list.vercel.app/
